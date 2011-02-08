@@ -35,7 +35,15 @@ module Jquery
       def download_jquery_jqgrid
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid", :green)
-          get "https://github.com/tonytomov/jqGrid/raw/master/js/grid.base.js",     "public/javascripts/jquery.grid.base.js"
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.base.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jquery.grid.base.js", "wb") {|file| 
+            file.write(resp.body)
+          }
         end
       end
       
