@@ -32,7 +32,7 @@ module Jquery
         end
       end
 
-      def download_jquery_jqgrid
+      def download_jquery_jqgrid_base
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid", :green)
           url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.base.js')
@@ -41,7 +41,97 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.base.js", "wb") {|file| 
+          open("public/javascripts/jqgrid/jquery.grid.base.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+
+      def download_jquery_jqgrid_common
+        if options.jqgrid?
+          say_status("fetching", "jQuery jqGrid", :green)
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.common.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jqgrid/jquery.grid.common.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+      
+      def download_jquery_jqgrid_custom
+        if options.jqgrid?
+          say_status("fetching", "jQuery jqGrid", :green)
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.custom.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jqgrid/jquery.grid.custom.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+      
+      def download_jquery_jqgrid_formedit
+        if options.jqgrid?
+          say_status("fetching", "jQuery jqGrid", :green)
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.formedit.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jqgrid/jquery.grid.formedit.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+
+      def download_jquery_jqgrid_inlinedit
+        if options.jqgrid?
+          say_status("fetching", "jQuery jqGrid", :green)
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.inlinedit.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jqgrid/jquery.grid.inlinedit.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+
+      def download_jquery_jqgrid_celledit
+        if options.jqgrid?
+          say_status("fetching", "jQuery jqGrid", :green)
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.celledit.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jqgrid/jquery.grid.celledit.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+      
+      def download_jquery_jqgrid_fmatter
+        if options.jqgrid?
+          say_status("fetching", "jQuery jqGrid", :green)
+          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.fmatter.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          open("public/javascripts/jqgrid/jquery.grid.fmatter.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
