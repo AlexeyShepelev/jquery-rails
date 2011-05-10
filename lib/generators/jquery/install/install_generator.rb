@@ -122,7 +122,7 @@ module Jquery
         end
       end
       
-      def download_jquery_jqgrid_celledit
+      def download_jquery_jqgrid_subgrid
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid subgrid", :green)
           url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.subgrid.js')
