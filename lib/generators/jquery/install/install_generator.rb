@@ -42,7 +42,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.base.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.base.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -57,7 +60,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.common.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.common.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -72,7 +78,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.custom.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.custom.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -87,7 +96,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.formedit.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.formedit.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -102,7 +114,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.inlinedit.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.inlinedit.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -117,7 +132,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.celledit.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.celledit.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -132,7 +150,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.grid.subgrid.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/grid.subgrid.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -147,7 +168,10 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          open("public/javascripts/jquery.fmatter.js", "wb") {|file| 
+          if !File.directory? "public/javascripts/jqgrid"
+            Dir.mkdir("public/javascripts/jqgrid")
+          end
+          open("public/javascripts/jqgrid/jquery.fmatter.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
@@ -175,13 +199,51 @@ module Jquery
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
           http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
           resp = http.request_get(url.to_s)
-          Dir.mkdir("public/javascripts/jspdf")
+          if !File.directory? "public/javascripts/jspdf"
+            Dir.mkdir("public/javascripts/jspdf")
+          end
           open("public/javascripts/jspdf/jspdf.js", "wb") {|file| 
             file.write(resp.body)
           }
         end
       end
       
+      def download_jspdf_base64
+        if options.jspdf?
+          say_status("fetching", "jsPDF base64.js", :green)
+          url = URI.parse('https://github.com/MrRio/jsPDF/blob/master/libs/base64.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          if !File.directory? "public/javascripts/jspdf/libs"
+            Dir.mkdir("public/javascripts/jspdf/libs")
+          end
+          open("public/javascripts/jspdf/libs/base64.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+
+      def download_jspdf_sprintf
+        if options.jspdf?
+          say_status("fetching", "jsPDF sprintf.pdf", :green)
+          url = URI.parse('https://github.com/MrRio/jsPDF/blob/master/libs/sprintf.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          if !File.directory? "public/javascripts/jspdf/libs"
+            Dir.mkdir("public/javascripts/jspdf/libs")
+          end
+          open("public/javascripts/jspdf/libs/sprintf.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+
     private
 
       def get_jquery(version)
