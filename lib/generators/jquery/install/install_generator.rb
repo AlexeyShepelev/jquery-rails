@@ -7,6 +7,7 @@ module Jquery
       class_option :ui, :type => :boolean, :default => false, :desc => "Include jQueryUI"
       class_option :version, :type => :string, :default => "1.5", :desc => "Which version of jQuery to fetch"
       class_option :jqgrid, :type => :boolean, :default => false, :desc => "Include jqGrid"
+      class_option :jspdf, :type => :boolean, :default => false, :desc => "Include jsPDF"
       @@default_version = "1.5"
 
       def remove_prototype
@@ -165,6 +166,22 @@ module Jquery
         }
       end
 
+      def download_jspdf_functions
+        if options.jspdf?
+          say_status("fetching", "jsPDF js.pdf", :green)
+          url = URI.parse('https://github.com/MrRio/jsPDF/blob/master/jspdf.js')
+          http = Net::HTTP.new(url.host, url.port)
+          http.use_ssl = true
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
+          resp = http.request_get(url.to_s)
+          Dir.mkdir("public/javascripts/jspdf")
+          open("public/javascripts/jspdf/jspdf.js", "wb") {|file| 
+            file.write(resp.body)
+          }
+        end
+      end
+      
     private
 
       def get_jquery(version)
