@@ -35,7 +35,7 @@ module Jquery
       def download_jquery_jqgrid_base
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid base", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.base.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.base.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -44,8 +44,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.base.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.base.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -53,7 +53,7 @@ module Jquery
       def download_jquery_jqgrid_common
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid common", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.common.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.common.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -62,8 +62,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.common.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.common.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -71,7 +71,7 @@ module Jquery
       def download_jquery_jqgrid_custom
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid custom", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.custom.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.custom.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -80,8 +80,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.custom.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.custom.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -89,7 +89,7 @@ module Jquery
       def download_jquery_jqgrid_formedit
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid formedit", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.formedit.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.formedit.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -98,8 +98,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.formedit.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.formedit.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -107,7 +107,7 @@ module Jquery
       def download_jquery_jqgrid_inlinedit
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid inlineedit", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.inlinedit.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.inlinedit.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -116,8 +116,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.inlinedit.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.inlinedit.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -125,7 +125,7 @@ module Jquery
       def download_jquery_jqgrid_celledit
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid celledit", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.celledit.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.celledit.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -134,8 +134,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.celledit.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.celledit.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -143,7 +143,7 @@ module Jquery
       def download_jquery_jqgrid_subgrid
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid subgrid", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/grid.subgrid.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/grid.subgrid.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -152,8 +152,8 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/grid.subgrid.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/grid.subgrid.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
@@ -161,7 +161,7 @@ module Jquery
       def download_jquery_jqgrid_fmatter
         if options.jqgrid?
           say_status("fetching", "jQuery jqGrid fmatter", :green)
-          url = URI.parse('https://github.com/tonytomov/jqGrid/raw/master/js/jquery.fmatter.js')
+          url = URI.parse('https://raw.github.com/tonytomov/jqGrid/master/js/jquery.fmatter.js')
           http = Net::HTTP.new(url.host, url.port)
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -170,15 +170,15 @@ module Jquery
           if !File.directory? "public/javascripts/jqgrid"
             Dir.mkdir("public/javascripts/jqgrid")
           end
-          open("public/javascripts/jqgrid/jquery.fmatter.js", "wb") {|file| 
-            file.write(resp.body)
+          open("public/javascripts/jqgrid/jquery.fmatter.min.js", "wb") {|file| 
+            file.write(js_compress(resp.body))
           }
         end
       end
       
       def download_ujs_driver
         say_status("fetching", "jQuery UJS adapter (github HEAD)", :green)
-        url = URI.parse('https://github.com/rails/jquery-ujs/raw/master/src/rails.js')
+        url = URI.parse('https://raw.github.com/rails/jquery-ujs/master/src/rails.js')
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_PEER
@@ -194,6 +194,15 @@ module Jquery
       def get_jquery(version)
         get "http://ajax.googleapis.com/ajax/libs/jquery/#{version}/jquery.js",     "public/javascripts/jquery.js"
         get "http://ajax.googleapis.com/ajax/libs/jquery/#{version}/jquery.min.js", "public/javascripts/jquery.min.js"
+      end
+
+      def js_compress(code)
+        res = Net::HTTP.post_form(URI.parse('http://closure-compiler.appspot.com/compile'),
+                                  {'js_code' => code,
+                                   'compilation_level' => 'WHITESPACE_ONLY',
+                                   'output_format' => 'text',
+                                   'output_info' => 'compiled_code'})
+        return res.body
       end
 
     end
