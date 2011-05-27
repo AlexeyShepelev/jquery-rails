@@ -7,7 +7,6 @@ module Jquery
       class_option :ui, :type => :boolean, :default => false, :desc => "Include jQueryUI"
       class_option :version, :type => :string, :default => "1.5", :desc => "Which version of jQuery to fetch"
       class_option :jqgrid, :type => :boolean, :default => false, :desc => "Include jqGrid"
-      class_option :jspdf, :type => :boolean, :default => false, :desc => "Include jsPDF"
       @@default_version = "1.5"
 
       def remove_prototype
@@ -188,60 +187,6 @@ module Jquery
         open("public/javascripts/rails.js", "wb") {|file| 
           file.write(resp.body)
         }
-      end
-
-      def download_jspdf_functions
-        if options.jspdf?
-          say_status("fetching", "jsPDF js.pdf", :green)
-          url = URI.parse('https://github.com/MrRio/jsPDF/blob/master/jspdf.js')
-          http = Net::HTTP.new(url.host, url.port)
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
-          resp = http.request_get(url.to_s)
-          if !File.directory? "public/javascripts/jspdf"
-            Dir.mkdir("public/javascripts/jspdf")
-          end
-          open("public/javascripts/jspdf/jspdf.js", "wb") {|file| 
-            file.write(resp.body)
-          }
-        end
-      end
-      
-      def download_jspdf_base64
-        if options.jspdf?
-          say_status("fetching", "jsPDF base64.js", :green)
-          url = URI.parse('https://github.com/MrRio/jsPDF/blob/master/libs/base64.js')
-          http = Net::HTTP.new(url.host, url.port)
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
-          resp = http.request_get(url.to_s)
-          if !File.directory? "public/javascripts/jspdf/libs"
-            Dir.mkdir("public/javascripts/jspdf/libs")
-          end
-          open("public/javascripts/jspdf/libs/base64.js", "wb") {|file| 
-            file.write(resp.body)
-          }
-        end
-      end
-
-      def download_jspdf_sprintf
-        if options.jspdf?
-          say_status("fetching", "jsPDF sprintf.pdf", :green)
-          url = URI.parse('https://github.com/MrRio/jsPDF/blob/master/libs/sprintf.js')
-          http = Net::HTTP.new(url.host, url.port)
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          http.ca_file = File.join(File.dirname(__FILE__), "cacert.pem")
-          resp = http.request_get(url.to_s)
-          if !File.directory? "public/javascripts/jspdf/libs"
-            Dir.mkdir("public/javascripts/jspdf/libs")
-          end
-          open("public/javascripts/jspdf/libs/sprintf.js", "wb") {|file| 
-            file.write(resp.body)
-          }
-        end
       end
 
     private
